@@ -294,24 +294,34 @@ h2{color:var(--navy);}
 .cta-perk p b{display:block;color:var(--ink);font-size:var(--fs-text);margin-bottom:2px;}
 .castle-art img{width:100%;}
 
-/* About — navy stats strip */
-.about-strip{background:var(--navy);color:var(--offwhite);padding:44px 0 40px;}
-.about-stats{display:flex;flex-wrap:wrap;gap:28px 64px;padding-bottom:30px;border-bottom:1px solid rgba(205,212,234,.18);margin-bottom:28px;}
-.about-stat .num{
-  display:block;font-family:'Archivo Black',sans-serif;
-  font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.1;color:var(--gold);margin-bottom:10px;
+/* About — navy card footer */
+.about-strip{padding:24px 0 40px;}
+.about-card{
+  background:var(--navy);border-radius:16px;padding:28px 32px;
+  display:grid;grid-template-columns:minmax(0,1.5fr) auto minmax(0,1fr);
+  align-items:center;gap:32px;
 }
-.about-stat .lbl{
-  display:block;font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;
-  color:var(--peri-light);text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;
+.about-text p{margin:0;font-size:var(--fs-text);line-height:1.75;color:#fff;}
+.about-stats{
+  display:flex;flex-direction:column;gap:12px;
+  padding-left:36px;border-left:1px solid rgba(205,212,234,.22);
 }
-.about-inner{display:flex;align-items:center;justify-content:space-between;gap:24px 32px;flex-wrap:wrap;}
-.about-text{max-width:640px;}
-.about-text p{margin:0;font-size:var(--fs-text);color:var(--peri-light);}
-@media (max-width:700px){
-  .about-stats{gap:24px 36px;}
-  .about-stat .lbl{font-size:.82rem;white-space:normal;}
-  .about-inner{flex-direction:column;align-items:flex-start;}
+.about-stat{display:grid;grid-template-columns:105px 1fr;align-items:baseline;}
+.about-stat .num{font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;color:var(--gold);}
+.about-stat .lbl{font-family:'Inter',sans-serif;font-size:1rem;color:var(--peri-light);white-space:nowrap;}
+.about-cta{justify-self:end;}
+.btn-blue{
+  background:var(--periwinkle);border-color:var(--periwinkle);color:#fff;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:.95rem;
+  text-transform:none;letter-spacing:0;padding:14px 26px;
+}
+.btn-blue:hover{background:#8193CC;border-color:#8193CC;}
+
+@media (max-width:900px){
+  .about-card{grid-template-columns:1fr;gap:22px;padding:24px 20px;}
+  .about-stats{padding-left:0;padding-top:20px;border-left:none;border-top:1px solid rgba(205,212,234,.22);}
+  .about-stat .lbl{white-space:normal;}
+  .about-cta{justify-self:start;}
 }
 </style>
 </head>
@@ -572,28 +582,28 @@ h2{color:var(--navy);}
   </div>
 </section>
 
-<!-- ABOUT / FOOTER STATS -->
+<!-- ABOUT / FOOTER -->
 <section class="about-strip">
   <div class="wrap">
-    <div class="about-stats reveal">
-      <div class="about-stat">
-        <span class="num">~1000</span>
-        <span class="lbl" data-i18n="stat1-label">Negotiators trained</span>
+    <div class="about-card reveal">
+      <div class="about-text">
+        <p data-i18n="about-text">WeNego designs and delivers advanced negotiation workshops, coaching and consultancy for procurement, sales and commercial teams, turning negotiation into a repeatable, measurable skill with immediate ROI.</p>
       </div>
-      <div class="about-stat">
-        <span class="num">120+</span>
-        <span class="lbl" data-i18n="stat2-label">Seminars delivered</span>
+      <div class="about-stats">
+        <div class="about-stat">
+          <span class="num" data-i18n="stat1-num">15 yrs</span>
+          <span class="lbl" data-i18n="stat1-label">In negotiation</span>
+        </div>
+        <div class="about-stat">
+          <span class="num">1500+</span>
+          <span class="lbl" data-i18n="stat2-label">Negotiators trained</span>
+        </div>
+        <div class="about-stat">
+          <span class="num">150+</span>
+          <span class="lbl" data-i18n="stat3-label">Workshops delivered</span>
+        </div>
       </div>
-      <div class="about-stat">
-        <span class="num" data-i18n="stat3-num">15 yrs</span>
-        <span class="lbl" data-i18n="stat3-label">In negotiation</span>
-      </div>
-    </div>
-    <div class="about-inner">
-      <div class="about-text reveal">
-        <p data-i18n="about-text">WeNego designs and delivers advanced negotiation workshops, coaching and consultancy for procurement, sales and commercial teams turning negotiation into a repeatable, measurable skill with immediate ROI.</p>
-      </div>
-      <a href="https://www.wenego.fr/" target="_blank" rel="noopener" class="btn btn-secondary on-dark reveal" data-i18n="visit-link">Visit wenego.fr →</a>
+      <a href="https://www.wenego.fr/" target="_blank" rel="noopener" class="btn btn-blue about-cta" data-i18n="visit-link">Visit wenego.fr →</a>
     </div>
   </div>
 </section>
@@ -662,10 +672,10 @@ const translations = { en:{}, fr:{
   'perk2': '<b>Diagnostic gratuit</b>Comprendre votre maturité<br>IA × négociation.',
   'perk3': '<b>Gains rapides</b>Repartez avec des étapes<br>concrètes et applicables.',
   'about-text': 'WeNego conçoit et anime des ateliers de négociation avancés, du coaching et du conseil pour les équipes achats, ventes et commerciales — pour faire de la négociation une compétence reproductible et mesurable, avec un ROI immédiat.',
-  'stat1-label': 'Négociateurs formés',
-  'stat2-label': 'Séminaires animés',
-  'stat3-num': '15 ans',
-  'stat3-label': 'En négociation',
+  'stat1-num': '15 ans',
+  'stat1-label': 'En négociation',
+  'stat2-label': 'Négociateurs formés',
+  'stat3-label': 'Ateliers animés',
   'visit-link': 'Visiter wenego.fr →'
 }};
 
